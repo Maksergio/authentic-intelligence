@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ── PRIMARY META ──────────────────────────────────────────── -->
+    <title>The Authentic Intelligence: Beyond Algorithms</title>
+    <meta name="description" content="A holistic ethical governance approach — CNM · EPI · DEMAND · SITE. By Serge MAKOUNDOU / Culture Tour Ltd." />
+    <meta name="author" content="Serge MAKOUNDOU / Culture Tour Ltd" />
+    <meta name="keywords" content="Authentic Intelligence, CNM, EPI, DEMAND, SITE, ethical AI, governance, Serge MAKOUNDOU, Culture Tour" />
+
+    <!-- ── PWA MANIFEST ──────────────────────────────────────────── -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#10b981" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- ── APPLE PWA (iOS) ───────────────────────────────────────── -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Authentic Intelligence" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+
+    <!-- ── OPEN GRAPH (social sharing) ──────────────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="The Authentic Intelligence: Beyond Algorithms" />
+    <meta property="og:description" content="A holistic ethical governance approach — CNM · EPI · DEMAND. By Serge MAKOUNDOU / Culture Tour Ltd." />
+    <meta property="og:url" content="https://www.culturetour.org" />
+    <meta property="og:image" content="/icon-512.png" />
+
+    <!-- ── TWITTER CARD ──────────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="The Authentic Intelligence: Beyond Algorithms" />
+    <meta name="twitter:description" content="A holistic ethical governance approach — CNM · EPI · DEMAND. By Serge MAKOUNDOU / Culture Tour Ltd." />
+    <meta name="twitter:image" content="/icon-512.png" />
+
+    <!-- ── FAVICON ───────────────────────────────────────────────── -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icon-192.png" />
+
+    <style>
+      /* Prevent flash of unstyled content */
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #071422;
+        font-family: 'Palatino Linotype', Georgia, serif;
+      }
+      /* Loading screen */
+      #loading {
+        position: fixed;
+        inset: 0;
+        background: #071422;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+      #loading.hidden { opacity: 0; pointer-events: none; }
+      .loading-title {
+        font-size: 22px;
+        font-weight: 800;
+        color: white;
+        margin-bottom: 8px;
+        font-family: 'Palatino Linotype', Georgia, serif;
+      }
+      .loading-sub {
+        font-size: 13px;
+        color: #10b981;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 32px;
+      }
+      .loading-bar {
+        width: 200px;
+        height: 3px;
+        background: #1e3a5f;
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .loading-bar-fill {
+        height: 100%;
+        background: #10b981;
+        border-radius: 2px;
+        animation: loadBar 1.2s ease-in-out forwards;
+      }
+      @keyframes loadBar {
+        from { width: 0%; }
+        to { width: 100%; }
+      }
+      .loading-copy {
+        margin-top: 24px;
+        font-size: 10px;
+        color: rgba(255,255,255,0.3);
+        letter-spacing: 1px;
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Loading screen -->
+    <div id="loading">
+      <div class="loading-title">The Authentic Intelligence: Beyond Algorithms</div>
+      
+      <div class="loading-bar">
+        <div class="loading-bar-fill"></div>
+      </div>
+      <div class="loading-copy">© 2026 Serge MAKOUNDOU / Culture Tour Ltd</div>
+    </div>
+
+    <!-- React app root -->
+    <div id="root"></div>
+
+    <!-- Main app script (Vite injects this) -->
+    
+
+    <!-- ── SERVICE WORKER REGISTRATION ───────────────────────────── -->
+    <script>
+      // Hide loading screen once app renders
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          const loading = document.getElementById('loading');
+          if (loading) loading.classList.add('hidden');
+        }, 1400);
+      });
+
+      // Register service worker for PWA / offline support
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('SW registered:', reg.scope))
+            .catch(err => console.log('SW registration failed:', err));
+        });
+      }
+
+      // Handle ?module= shortcut links from manifest shortcuts
+      window.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const module = params.get('module');
+        if (module !== null) {
+          window.__INITIAL_MODULE__ = parseInt(module);
+        }
+      });
+    </script>
+
+  </body>
+</html>

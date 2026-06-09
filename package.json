@@ -1,0 +1,22 @@
+{
+  "name": "authentic-intelligence",
+  "private": true,
+  "version": "1.0.0",
+  "description": "The Authentic Intelligence Beyond Algorithm — CNM · EPI · DEMAND · SITE. By Serge MAKOUNDOU / Culture Tour Ltd.",
+  "author": "Serge MAKOUNDOU <serge@culturetour.org>",
+  "homepage": "https://maksergio.github.io/authentic-intelligence",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.0"
+  }
+}
